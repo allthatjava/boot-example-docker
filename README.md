@@ -66,3 +66,13 @@ docker.io/allthatjava/boot-example-docker.jar:latest
 $ docker run -p 9090:8080 allthatjava/boot-example-docker.jar
 ```
 * Then access `http://localhost:9090/message` on the browser
+
+### EXTRA - Build docker image without Dockerfile
+* By the running the following command, maven will generate Docker image based on the project
+```
+mvn clean package spring-boot:build-image
+```
+* To run the maven generated Docker image
+```
+docker run --tty --publish 8080:8080 boot-example-docker:0.0.1-SNAPSHOT
+```
