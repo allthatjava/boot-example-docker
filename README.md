@@ -76,3 +76,49 @@ mvn clean package spring-boot:build-image
 ```
 docker run --tty --publish 8080:8080 boot-example-docker:0.0.1-SNAPSHOT
 ```
+
+# To run it on Kubernetes
+* You gotta start the minikube first
+`minikube start --driver=docker`
+* create a `deployment.yaml` file with following content
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boot-example-docker-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: boot-example-docker-deployment
+  template:
+    metadata:
+      labels:
+        app: boot-example-docker
+    spec:
+      containers:
+        - name: boot-example-docker
+          image: boot-example-docker:1.0
+          ports:
+            - containerPort: 8080
+```
+* then create `service.yaml` with following contents
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: boot-example-docker-service
+spec:
+  type: ClusterIP
+  selector:
+    app: boot-example-docker
+  ports:
+    - port: 8080
+      targetPort: 8080
+```
+* then run the following command to deploy the app
+`kubectl apply -f deployment.yaml`
+* then run the following command to register service
+`kubctl apply -f service.yaml`
+* then run the following command to start the app
+`minikube service boot-example-docker-service`

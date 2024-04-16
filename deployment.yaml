@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boot-example-docker-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: boot-example-docker
+  template:
+    metadata:
+      labels:
+        app: boot-example-docker
+    spec:
+      containers:
+      - name: boot-example-docker
+        image: boot-example-docker:1.0
+        ports:
+        - containerPort: 8080
