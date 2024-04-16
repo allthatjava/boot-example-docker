@@ -78,8 +78,23 @@ docker run --tty --publish 8080:8080 boot-example-docker:0.0.1-SNAPSHOT
 ```
 
 # To run it on Kubernetes
+* To run docker image with minikube following must be done
+```xml
+C:\Users\allth>minikube docker-env
+        SET DOCKER_TLS_VERIFY=1
+        SET DOCKER_HOST=tcp://127.0.0.1:56987
+        SET DOCKER_CERT_PATH=C:\Users\allth\.minikube\certs
+        SET MINIKUBE_ACTIVE_DOCKERD=minikube
+        REM To point your shell to minikube's docker-daemon, run:
+        REM @FOR /f "tokens=*" %i IN ('minikube -p minikube docker-env --shell cmd') DO @%i
+```
+* then copy the last line and run it on the command line
+```
+C:\Users\allth>@FOR /f "tokens=*" %i IN ('minikube -p minikube docker-env --shell cmd') DO @%i
+```
 * You gotta start the minikube first
-`minikube start --driver=docker`
+  `minikube start --driver=docker`
+ 
 * create a `deployment.yaml` file with following content
 ```yaml
 apiVersion: apps/v1
