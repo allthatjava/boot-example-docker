@@ -90,7 +90,7 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: boot-example-docker-deployment
+      app: boot-example-docker
   template:
     metadata:
       labels:
