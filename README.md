@@ -140,3 +140,41 @@ spec:
 
 * If you want to run the applicaiton on expose certain port, you need to use port-forwarding with pods name
 `kubectl port-forward boot-example-docker-deployment-5d85685967-g299n 8080:8080`
+
+
+### Deploy it to Azure Container
+* Add code to Azure DevOps (Or Azure DevOps supported repository).
+* Then select "Pipelines > Azure Repos Git"
+![img/azure-pipeline-01.png](img/azure-pipeline-01.png)
+* Select repository you are going to use
+![img/azure-pipeline-02.png](img/azure-pipeline-02.png)
+* Select Docker with Conatiner Registry option
+![img/azure-pipeline-03.png](img/azure-pipeline-03.png)
+* Azure login popup will come up and sign in
+* Then select Container Registry you have created in Azure Portal and Dockerfile
+![img/azure-pipeline-04.png](img/azure-pipeline-04.png)
+* Save and run
+![img/azure-pipeline-05.png](img/azure-pipeline-05.png)
+* It will fail for the first then since there are no maven task added
+![img/azure-pipeline-06.png](img/azure-pipeline-06.png)
+* Select the pipeline you created and edit
+* Search for the "maven" in the Tasks search box.
+![img/azure-pipeline-07.png](img/azure-pipeline-07.png)
+* Create additional line after "Steps:". Then "Add" maven task configure as you would normally do. such as goal to `install`
+![img/azure-pipeline-08.png](img/azure-pipeline-08.png)
+* Validate and Run
+![img/azure-pipeline-09.png](img/azure-pipeline-09.png)
+* It will build successfully and push the image to Container Registry
+![img/azure-pipeline-10.png](img/azure-pipeline-10.png)
+* You will see the pushed image on Container Registry
+![img/azure-pipeline-11.png](img/azure-pipeline-11.png)
+* When you clicked image name, you will see the build version
+![img/azure-pipeline-12.png](img/azure-pipeline-12.png)
+* Now create a web app with container option
+  ![img/azure-pipeline-13.png](img/azure-pipeline-13.png)
+* In the container step, select "Azure Container Registry" then select the image and version you want to deploy
+  ![img/azure-pipeline-14.png](img/azure-pipeline-14.png)
+* In the overview of web app, you will see the Default domain, click that
+  ![img/azure-pipeline-15.png](img/azure-pipeline-15.png)
+* You will see the app is running
+  ![img/azure-pipeline-16.png](img/azure-pipeline-16.png)

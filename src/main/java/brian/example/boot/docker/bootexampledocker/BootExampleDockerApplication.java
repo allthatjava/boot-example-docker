@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class BootExampleDockerApplication {
 
-    @GetMapping("/message")
+    @GetMapping( value={"/", "/message"})
     public String getMessages(@Nullable @RequestParam("name") String name){
         log.debug("Welcome to dockerize example:"+name);
         return "Welcome to dockerize example : "+name;
