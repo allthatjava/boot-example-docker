@@ -1,0 +1,7 @@
+version: "1"
+services:
+  boot-example-docker:
+    image: boot-example-docker:1.0
+    container_name: boot-example-docker
+    ports:
+      - 8080:8080

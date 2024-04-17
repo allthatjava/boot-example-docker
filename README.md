@@ -137,3 +137,6 @@ spec:
 `kubctl apply -f service.yaml`
 * then run the following command to start the app
 `minikube service boot-example-docker-service`
+
+* If you want to run the applicaiton on expose certain port, you need to use port-forwarding with pods name
+`kubectl port-forward boot-example-docker-deployment-5d85685967-g299n 8080:8080`
