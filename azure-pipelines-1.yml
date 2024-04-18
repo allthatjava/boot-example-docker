@@ -10,8 +10,8 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'c08b4305-d8a4-4c14-8ac6-26017479845e'
-  imageRepository: 'containergroupregistries'
+  dockerRegistryServiceConnection: '51b5225e-c870-47d3-9a2f-c36f149aafde'
+  imageRepository: 'bootexampledocker'
   containerRegistry: 'containergroupregistries.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
@@ -28,17 +28,6 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: Maven@4
-      inputs:
-        mavenPomFile: 'pom.xml'
-        goals: 'install'
-        publishJUnitResults: true
-        testResultsFiles: '**/surefire-reports/TEST-*.xml'
-        javaHomeOption: 'JDKVersion'
-        mavenVersionOption: 'Default'
-        mavenAuthenticateFeed: false
-        effectivePomSkip: false
-        sonarQubeRunAnalysis: false
     - task: Maven@4
       inputs:
         mavenPomFile: 'pom.xml'
