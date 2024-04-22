@@ -178,3 +178,9 @@ spec:
   ![img/azure-pipeline-15.png](img/azure-pipeline-15.png)
 * You will see the app is running
   ![img/azure-pipeline-16.png](img/azure-pipeline-16.png)
+
+# Extra
+* To change the log level, run the following command on the command line tool
+`curl -i -X POST -H 'Content-Type: application/json' -d '{"configuredLevel":"TRACE"}' http://localhost:8080/actuator/loggers/brian.example `
+* Then you should be able to check the log level with following command
+`curl http://localhost:8080/actuator/loggers/brian.example`

@@ -15,7 +15,8 @@ public class BootExampleDockerApplication {
 
     @GetMapping( value={"/", "/message"})
     public String getMessages(@Nullable @RequestParam("name") String name){
-        log.debug("Welcome to dockerize example:"+name);
+        log.debug("Welcome to dockerize example(Debug):"+name);
+        log.info("Welcome to dockerize example(Info):"+name);
         return "Welcome to dockerize example : "+name;
     }
 
